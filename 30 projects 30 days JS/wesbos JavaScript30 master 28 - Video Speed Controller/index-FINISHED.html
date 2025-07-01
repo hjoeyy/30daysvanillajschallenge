@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Speed Scrubber</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://fav.farm/✅" />
+</head>
+<body>
+
+  <div class="wrapper">
+    <video class="flex" width="765" height="430" src="https://rr2---sn-a5msener.googlevideo.com/videoplayback?expire=1751414300&ei=vCFkaNrRDPb3sfIPlYegwQs&ip=179.61.245.231&id=o-AD1_wWGGv-AYTxpOKPqedSIMij47IbHtMaD7lNLRZ4v3&itag=18&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&rms=au%2Cau&ctier=L&bui=AY1jyLMZ9LJVpt1Y6mtxeNedNgsT36QMUm4dH-CmPBfJsOp2Bm_tossFXYPfDdW_x38TXNLGqu5Z2_xh&spc=l3OVKecKatTJcAMVV2WaxSNFdkUcBnwowK3AjuLC-8xSjpfwZOWGtJy5GXw1lKcnqA&vprv=1&svpuc=1&mime=video%2Fmp4&ns=AYcRTUko2643W030Omw-7qkQ&rqh=1&gir=yes&clen=47841873&ratebypass=yes&dur=972.289&lmt=1751104648049578&lmw=1&c=TVHTML5&sefc=1&txp=5538534&n=1zCUAr0n17smtQ&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cctier%2Cbui%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Crqh%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&sig=AJfQdSswRgIhANB-f2BT8kBzD-2PyzijFdy77TSza8U2C3PcNKu_y8b9AiEAtaqXT8Dlfi3T4XQ_4945bTFe8d2ezbnaA3kKTopMwvE%3D&redirect_counter=1&rm=sn-n4vse7e&rrc=104&fexp=24350590,24350737,24350827,24350961,24351316,24351318,24351528,24351907,24352102,24352220,24352236,24352321,24352333,24352336,24352394,24352396,24352447,24352457,24352459,24352466,24352468&req_id=b55f7699097fa3ee&cms_redirect=yes&cmsv=e&ipbypass=yes&met=1751392708,&mh=p8&mip=104.129.198.233&mm=31&mn=sn-a5msener&ms=au&mt=1751392380&mv=m&mvi=2&pl=23&lsparams=ipbypass,met,mh,mip,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRQIgVwEFGKFC8Hg5502OHuY4fzry_zJcYtlgE-6gQSO4G8YCIQDkFG_oLRPgNgYSJ-fDjyFQkpU3mJXhaPpTOwL82LaGFA%3D%3D" loop controls></video>
+    <div class="speed">
+      <div class="speed-bar">1×</div>
+    </div>
+  </div>
+
+<script>
+  const speed = document.querySelector('.speed');
+  const bar = speed.querySelector('.speed-bar');
+  const video = document.querySelector('.flex');
+
+  function handleMove(e) {
+      const y = e.pageY - this.offsetTop;
+      const percent = y / this.offsetHeight;
+      const min = 0.4;
+      const max = 4;
+      const height = Math.round(percent * 100) + '%';
+      const playbackRate = percent * (max - min) + min;
+      bar.style.height = height;
+      bar.textContent = playbackRate.toFixed(2) + '×';
+      video.playbackRate = playbackRate;
+    }
+
+  speed.addEventListener('mousemove', handleMove);
+
+</script>
+</body>
+</html>
